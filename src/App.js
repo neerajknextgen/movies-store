@@ -20,7 +20,6 @@ function App() {
   function getMovies(API) {
     fetch(API).then(res => res.json())
     .then(data => {
-      console.log(data);
       setMovies(data.results);
     });
   }
@@ -52,7 +51,7 @@ function App() {
       </header>
 
       <div className="movie-container">
-        {movies.length > 0 ? movies.map(movie =>
+        {movies.length > 0 ? movies.sort((a, b) => a.vote_average < b.vote_average ? 1 : -1).map(movie =>
           <Movie
             key={movie.id}
             poster_path={movie.poster_path}
